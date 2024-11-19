@@ -1,0 +1,160 @@
+imports:
+  "@flyde/stdlib":
+    - Http
+    - Comment
+    - Delay
+  ..\src\UpImage.flyde.ts:
+    - UpImageNode
+  ..\src\GetImageNode.flyde.ts:
+    - GetImageNode
+  ..\src\FlipNode.flyde.ts:
+    - FlipNode
+  ..\src\ColortoRedNode.flyde.ts:
+    - ColortoRedNode
+node:
+  instances:
+    - pos:
+        x: -123.15687744140632
+        y: -1241.4079760742188
+      id: hghu6tpkbwlfuswqpwrawili
+      inputConfig: {}
+      nodeId: Http__hghu6tpkbwlfuswqpwrawili
+      macroId: Http
+      macroData:
+        method:
+          type: select
+          value: PUT
+        url:
+          type: string
+          value: http://localhost:3100/update
+        headers:
+          type: json
+          value: {}
+        params:
+          type: json
+          value: {}
+        data:
+          type: json
+          value: {}
+    - pos:
+        x: -553.84734375
+        y: -1250.9362588483611
+      id: njlckg4whuizeut1737guvrh
+      inputConfig: {}
+      nodeId: Comment__njlckg4whuizeut1737guvrh
+      macroId: Comment
+      macroData:
+        content: |-
+          <iframe src="http://localhost:5173/image-viewer">
+          </frame>
+    - pos:
+        x: -958.9503540039062
+        y: -1255.3050683593751
+      id: uu331nczt9jbhv584uquakqp
+      inputConfig: {}
+      nodeId: Comment__uu331nczt9jbhv584uquakqp
+      macroId: Comment
+      macroData:
+        content: |-
+          <iframe src="http://localhost:5173/">
+          </frame>
+    - pos:
+        x: 46.56144531249993
+        y: -275.5981616210937
+      id: test-u604fs7
+      inputConfig: {}
+      nodeId: Http__test-u604fs7
+      macroId: Http
+      macroData:
+        method:
+          type: select
+          value: PUT
+        url:
+          type: string
+          value: http://localhost:3100/update_viewer
+        headers:
+          type: json
+          value: {}
+        params:
+          type: json
+          value: {}
+        data:
+          type: json
+          value: {}
+    - pos:
+        x: 157.5709106445313
+        y: -574.9531807936285
+      id: UpImageNode-xs04fy3
+      inputConfig: {}
+      nodeId: UpImageNode
+    - pos:
+        x: -54.462319335937536
+        y: -1009.648400520191
+      id: GetImageNode-dx14fbc
+      inputConfig: {}
+      nodeId: GetImageNode
+    - pos:
+        x: 169.77835693359373
+        y: -909.0734835280034
+      id: FlipNode-v924fef
+      inputConfig: {}
+      nodeId: FlipNode
+    - pos:
+        x: 357.0047900390625
+        y: -782.2175899733159
+      id: ColortoRedNode-rc34fxt
+      inputConfig: {}
+      nodeId: ColortoRedNode
+    - pos:
+        x: 6.817404785156214
+        y: -1131.8216417904423
+      id: i1hyzxdk3s7k8nwz2lmofm4s
+      inputConfig: {}
+      nodeId: Delay__i1hyzxdk3s7k8nwz2lmofm4s
+      macroId: Delay
+      macroData:
+        delayMs:
+          type: number
+          value: 1000
+  connections:
+    - from:
+        insId: GetImageNode-dx14fbc
+        pinId: result
+      to:
+        insId: FlipNode-v924fef
+        pinId: image
+    - from:
+        insId: FlipNode-v924fef
+        pinId: result
+      to:
+        insId: ColortoRedNode-rc34fxt
+        pinId: image
+    - from:
+        insId: UpImageNode-xs04fy3
+        pinId: result
+      to:
+        insId: test-u604fs7
+        pinId: __trigger
+    - from:
+        insId: hghu6tpkbwlfuswqpwrawili
+        pinId: data
+      to:
+        insId: i1hyzxdk3s7k8nwz2lmofm4s
+        pinId: value
+    - from:
+        insId: i1hyzxdk3s7k8nwz2lmofm4s
+        pinId: delayedValue
+      to:
+        insId: GetImageNode-dx14fbc
+        pinId: image
+    - from:
+        insId: ColortoRedNode-rc34fxt
+        pinId: result
+      to:
+        insId: UpImageNode-xs04fy3
+        pinId: image
+  id: test
+  inputs: {}
+  outputs: {}
+  inputsPosition: {}
+  outputsPosition: {}

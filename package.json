@@ -1,0 +1,57 @@
+{
+  "name": "flyde-comment-macro",
+  "version": "0.0.01",
+  "description": "",
+  "flyde": {
+    "exposes": [
+      "dist/*.flyde.js"
+    ],
+    "typings": "flyde-typings.d.ts"
+  },
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "author": "Projecet coc.",
+  "license": "MIT",
+  "dependencies": {
+    "@blueprintjs/core": "^5.0.0",
+    "@blueprintjs/icons": "^5.13.0",
+    "@blueprintjs/select": "^5.0.20",
+    "@flyde/core": "^0.105.0",
+    "@hono/node-server": "^1.13.1",
+    "@types/node": "^20.13.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.3.0",
+    "html-react-parser": "^5.1.16",
+    "react": "^18.2.0",
+    "react-dom": "^18.3.1",
+    "react-iframe": "^1.8.5",
+    "react-painter": "^0.4.0",
+    "sharp": "^0.33.5",
+    "socket.io": "^4.8.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "css-loader": "^6.8.1",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.5.4",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "dev": "pnpm run watch",
+    "watch": "concurrently --kill-others \"pnpm run watch:ts\" \"pnpm run macros:watch\"",
+    "build": "tsc -p tsconfig.build.json && pnpm run macros:bundle",
+    "b-dev": "bun run b-watch",
+    "b-watch": "concurrently --kill-others \"bun run watch:ts\" \"bun run macros:watch\"",
+    "b-build": "tsc -p tsconfig.build.json && bun run macros:bundle",
+    "macros:bundle": "webpack --config webpack.config.js",
+    "macros:watch": "webpack --config webpack.config.js --watch",
+    "watch:ts": "tsc -p . -w --incremental",
+    "ins-vscexdir": "pnpm ts-node ./test/ins-vscexdir.ts",
+    "bins-vscexdir": "bun ts-node ./test/ins-vscexdir.ts",
+    "__publish": "npm version patch && npm publish"
+  }
+}

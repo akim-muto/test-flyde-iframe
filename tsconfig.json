@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2019",
+        "strict": false,
+        // "allowUnusedLabels": true,
+        // "allowUnreachableCode": false,
+        // "strictNullChecks": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": false,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "checkJs": true,
+    
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": [
+            "dom",
+            "es2019"
+        ],
+        "jsx": "react",
+        "declaration": true,
+        "declarationMap": true,
+        "outDir": "dist"
+    },
+    "include": ["src/*.tsx", "src/Macro.flyde.tsx"],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "server"
+    ]
+}
